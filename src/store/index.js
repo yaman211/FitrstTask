@@ -25,7 +25,7 @@ export default new Vuex.Store({
       'test'
     ],
     Users: [],
-    Logged : 0,
+    Logged : 1,
 
   },
   getters:{
@@ -56,6 +56,10 @@ export default new Vuex.Store({
     Edite_Recipe(state,index,New)
     {
       state.Recipes[index] = New;
+    },
+    Add_Recipe(state,Recipe)
+    {
+      state.Recipes.push(Recipe);
     },
     Add_Item(state,Name){
       state.ShoppingList.push(Name);

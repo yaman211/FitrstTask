@@ -1,5 +1,6 @@
 <template>
   <div>
+      <AppHeader></AppHeader>
       <div class="container">
         <form >
             <div class="form-group">
@@ -23,7 +24,11 @@
 </template>
 
 <script>
+import AppHeader from "@/components/AppHeader.vue";
 export default {
+    components:{
+    AppHeader,
+  },
     data(){
         return{
             Name: '',

@@ -26,12 +26,13 @@ export default new Vuex.Store({
     ],
     Users: [],
     Logged : 1,
-
+    Cur: -1,
+    Edit_Index: -1,
   },
   getters:{
-    Get_Recipe(state,index)
+    Get_Recipe(state)
     {
-      return state.Recipes[index];
+      return state.Recipes[state.Edit_Index];
     },
     Get_All(state)
     {
@@ -46,6 +47,10 @@ export default new Vuex.Store({
     },
     Logged(state){
       return state.Logged;
+    },
+    Get_Cur(state)
+    {
+      return state.Cur;
     }
   },
   mutations: {
@@ -53,9 +58,9 @@ export default new Vuex.Store({
     {
       state.Recipes.splice(index,1);
     },
-    Edite_Recipe(state,index,New)
+    Edit_Recipe(state,New)
     {
-      state.Recipes[index] = New;
+      state.Recipes[state.Edit_Index] = New;
     },
     Add_Recipe(state,Recipe)
     {
@@ -77,6 +82,14 @@ export default new Vuex.Store({
     },
     Add_User(state,User){
       state.Users.push(User);
+    },
+    Set_Cur(state,idx)
+    {
+      state.Cur = idx;
+    },
+    Set_Edit(state,idx)
+    {
+      state.Edit_Index = idx;
     }
   },
   actions: {

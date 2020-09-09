@@ -2,11 +2,11 @@
   <div>
       <AppHeader></AppHeader>
       <div class="container">
-          <button class="btn btn-success" @click="Ingrediants = [];Cur = -2">New Recipe</button>
+          <button class="btn btn-success" @click="Ingrediants = [];Active(-2)">New Recipe</button>
           <div class="row">
                 <div class="col-6">
               <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action " v-for="(recipe,i) in R" :key="i" @click="Get(i)">
+                <button type="button" class="list-group-item list-group-item-action " v-for="(recipe,i) in R" :key="i" @click="Active(i)">
                    <div class="row">
                        <div class="col-7">
                            <h4>{{ recipe.Name }}</h4>
@@ -40,15 +40,18 @@
                     <input type="text" class="form-control" id="Desc" v-model="Desc">
                 </div>
                 <button class="btn btn-primary" @click="Add()">Save</button>
-                <button class="btn btn-danger" @click="Cur = -1">Cancel</button>
+                <button class="btn btn-danger" @click="Active(-1)">Cancel</button>
                 <div>
                     <input type="text" class="form-control" v-for="(Ingrediant,i) in Ingrediants" :key="i" v-model="Ingrediants[i]"  placeholder="Enter Ingrediant">
                 </div>
                 <button class="btn btn-success" @click="Ingrediants.push('')">Add Ingrediant</button>
             </form>
            </div>
+           
+             <EditRecipe v-if="Cur === -3"></EditRecipe>
          </div>
 
+       
         
 
 
@@ -60,15 +63,15 @@
 </template>
 
 <script>
-import Recipe from "@/components/Recipe.vue";
 import AppHeader from "@/components/AppHeader.vue";
+import Recipe from "@/components/Recipe.vue";
+import EditRecipe from "@/components/EditRecipe.vue";
 export default {
     components:{
-        Recipe,AppHeader
+        Recipe,AppHeader,EditRecipe
     },
     data(){
         return{
-            Cur: -1,
             Ingrediants: [],
             Name: '',
             Image: '',
@@ -85,10 +88,14 @@ export default {
     computed:{
         R(){
             return this.$store.getters.Get_All;
+        },
+        Cur()
+        {
+            return this.$store.getters.Get_Cur;
         }
     },
     methods:{
-        Get(j) {
+        Active(j) {
             const x = document.getElementsByClassName('list-group-item-action');
             for(var i=0;i<x.length;i++)
             {
@@ -97,8 +104,12 @@ export default {
                     x[i].classList.remove('active');
                 }
             }
-            x[j].className += ' active';
-            this.Cur = j;
+            if(j >= 0)
+            {
+                x[j].className += ' active';
+                
+            }
+            this.Edit_Cur(j);
         },
         Add()
         {
@@ -115,6 +126,11 @@ export default {
             this.Image = '';
             this.Desc = '';
             this.ingrediants = [];
+            this.Edit_Cur(-1);
+        },
+        Edit_Cur(x)
+        {
+            this.$store.commit('Set_Cur',x);
         }
     }
 }

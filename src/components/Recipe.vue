@@ -8,9 +8,9 @@
                 Manage Recipe
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#" @click="Add_Items()">To Shopping list</a>
-              <a class="dropdown-item" href="#">Edit</a>
-              <a class="dropdown-item" href="#" @click="Delete()">Delete</a>
+              <button class="dropdown-item"  @click="Add_Items()">To Shopping list</button>
+              <button class="dropdown-item"  @click="Edit()">Edit</button>
+              <button class="dropdown-item"  @click="Delete()">Delete</button>
             </div>
         </div>
         <ul class="list-group">
@@ -32,6 +32,12 @@ export default {
         Delete()
         {
             this.$store.commit('Delete_Recipe',this.index);
+            this.$store.commit('Set_Cur',-1);
+        },
+        Edit()
+        {
+            this.$store.commit('Set_Edit',this.index);
+            this.$store.commit('Set_Cur',-3);
         }
     },
 };

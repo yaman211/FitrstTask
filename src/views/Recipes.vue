@@ -102,12 +102,13 @@ export default {
         },
         Add()
         {
-            let x = {
+            const x = {
                 Name:this.Name,
                 Image:this.Image,
                 Desc:this.Desc,
-                ingrediants:this.ingrediants,
+                ingrediants:this.Ingrediants,
             }
+            
             this.$store.commit('Add_Recipe',x);
             this.Cur = -1;
             this.Name = '';
@@ -128,7 +129,10 @@ div.row{
 }
 
 button.btn{
-    margin-right: 5px;
+   margin: 5px;
+}
+
+input[type="text"]{
     margin-top: 5px;
 }
 </style>

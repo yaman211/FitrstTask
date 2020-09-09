@@ -25,7 +25,7 @@ export default new Vuex.Store({
       'test'
     ],
     Users: [],
-    Logged : 0,
+    Logged : 1,
 
   },
   getters:{

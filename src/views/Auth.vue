@@ -43,7 +43,7 @@ export default {
        let Users = this.$store.getters.Get_Users;
        for(var i=0;i<Users.length;i++)
        {
-         if(Email === Users[i].Email && Pass === Users[i].Pass)
+         if(this.Email === Users[i].Email && this.Pass === Users[i].Pass)
          {
            this.$store.commit('Login');
            break;
@@ -61,7 +61,8 @@ export default {
      
      if(this.Email && this.Pass)
      {
-       this.$store.commit('Add_User',this.Email,this.Pass);
+       var x = {Email:this.Email,Pass:this.Pass};
+       this.$store.commit('Add_User',x);
        this.$store.commit('Login');
        this.$router.push('/recipes');
      }

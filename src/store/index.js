@@ -75,8 +75,8 @@ export default new Vuex.Store({
     Logout(state){
       state.Logged = 0;
     },
-    Add_User(state,email,pass){
-      state.Users.push({Email:email,Pass:pass});
+    Add_User(state,User){
+      state.Users.push(User);
     }
   },
   actions: {

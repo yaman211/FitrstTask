@@ -6,7 +6,7 @@
           <div class="row">
                 <div class="col-6">
               <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action " v-for="(recipe,i) in R" :key="i" @click="Active(i)">
+                <button type="button"  class="list-group-item list-group-item-action " v-for="(recipe,i) in R" :key="i" @click="Active(i)" :style="'--animation-order: ' + i">
                    <div class="row">
                        <div class="col-7">
                            <h4>{{ recipe.Name }}</h4>
@@ -151,4 +151,20 @@ button.btn{
 input[type="text"]{
     margin-top: 5px;
 }
+
+button.list-group-item{
+    animation: ListAnimation .2s calc(var(--animation-order) * 200ms) both ease-in;
+}
+
+@keyframes ListAnimation{
+    0%{
+        opacity: 0;
+        transform: translateX(-300px);
+    }
+    100%{
+        opacity: 1;
+        transform: none;
+    }
+}
+
 </style>

@@ -19,13 +19,20 @@ export default new Vuex.Store({
         Image: 'https://chowhound1.cbsistatic.com/thumbnail/1200/0/chowhound1.cbsistatic.com/assets/models/promotions/photos/29598/original/beef-shawarma-recipe-chowhound.jpg',
         ingrediants: ['meet ','meet'],
       },
+      {
+        Name: 'flafel',
+        Desc: 'Syrian Flafel ',
+        Image: 'https://kitchen.sayidaty.net/uploads/small/47/47bc7303629287029bc155f156aafd18_w750_h500.jpg',
+        ingrediants: ['homos ','test'],
+      },
+
     ],
     ShoppingList: [
       'tomato',
       'test'
     ],
     Users: [],
-    Logged : 0,
+    Logged : 1,
     Cur: -1,
     Edit_Index: -1,
   },

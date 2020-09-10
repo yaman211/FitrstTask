@@ -32,7 +32,7 @@ export default new Vuex.Store({
       'test'
     ],
     Users: [],
-    Logged : 1,
+    Logged : 0,
     Cur: -1,
     Edit_Index: -1,
   },
